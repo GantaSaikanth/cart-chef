@@ -1,0 +1,392 @@
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: "Roboto";
+    height: auto;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;    
+    border: 1px solid #ADADAD;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 0px;
+}
+.backbutton {
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+}
+.input {
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    width: 70%;
+}
+.searchbutton {
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    margin-left: 10px;
+}
+.tabs-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 0px;
+    width: 100%;
+}
+.tab-item {
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    font-family: Open Sans;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+.active-class {
+    background-color: #FF941A;
+    border: 1px solid #FF941A;
+    color: #ffffff;
+    
+}
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.filering-veg-non-veg-container {
+    display: flex;
+    align-items: center;
+}
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 50px; /* Full-width */
+  height: 10px; /* Specified height */
+  border-radius: 10px;
+  background-color: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+  transform: scale(1.05);
+  background-color: greenyellow;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: url('https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_dkssaf.png');
+  background-size: cover;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: url('https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_dkssaf.png');
+  background-size: cover;
+  cursor: pointer;
+}
+.veg-btn {
+    border: 1px solid #ededed;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px;
+}
+.slider-non-veg {
+    -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 50px; /* Full-width */
+  height: 10px; /* Specified height */
+  border-radius: 10px;
+  background-color: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.slider-non-veg:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+  transform: scale(1.05);
+  background-color: red;
+}
+
+.slider-non-veg::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: url('https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_1_g3idan.png');
+  background-size: cover;
+  cursor: pointer;
+}
+
+.slider-non-veg::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: url('https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_1_g3idan.png');
+  background-size: cover;
+  cursor: pointer;
+}
+.main-heading {
+    font-family: Open Sans;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+.list-item {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #F0F0F0;
+    padding: 5px;
+    
+}
+.dish-info {
+    display: flex;
+    flex-direction: column;
+    width: 202;
+height: 94;
+opacity: 1;
+
+}
+
+.dish-heading {
+    font-size: 15px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dish-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+}
+.dishes-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 50px;
+}
+.dish-images {
+    height: 15px;
+    width: 15px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.dish-para {
+    font-family: Open Sans;
+font-weight: 500;
+font-style: Medium;
+font-size: 12px;
+line-height: 100%;
+letter-spacing: 0%;
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.dish-info {
+    width: 60%;
+}
+.ingredient-para {
+    color: #FF8800;
+    font-family: Open Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 12px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+.ingredient-container {
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    height: 20px;
+    width: 100px;
+    text-align: left;
+}
+.main-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+}
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add-btn {
+    width: 100px;
+    border: 1px solid #ededed;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.add-to-cart {
+    color: #73AE78;
+    font-family: Open Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+
+}
+.remove-from-cart {
+    color: #FF941A;
+    font-family: Open Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+
+}
+.footer-container {
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFAF4;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-para {
+    font-family: Open Sans;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+.footer-btn {
+    background-color: #1C1C1C;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    width: 95vw;
+    padding: 10px;
+    margin-left: 10px;
+}
+.footer-image {
+    height: 20px;
+    width: 20px;
+}
+.links {
+    color: #FF8800;
+    text-decoration: none;
+    width: 100px;
+}
+/* Modal.css */
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1000;
+    top: auto;
+    height: 100vh;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.view-dish-image {
+    height: 200px;
+    width: 100%;
+    border-radius: 10px;
+}
+.modal-box h2 {
+    font-family: Open Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+.model-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

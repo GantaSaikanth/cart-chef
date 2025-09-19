@@ -1,0 +1,44 @@
+.ingredients-list-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ededed;
+
+}
+.ing-list {
+    display: flex;
+    flex-direction: column;
+}
+.ingredient-lists-image {
+    height: 200px;
+    width: 200px;
+}
+.back-list-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.head-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.ing-head {
+    font-family: Open Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #242424;
+margin-left: 20px;
+}
+
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-right: 20px;
+}

@@ -1,0 +1,357 @@
+import { Component } from 'react';
+import {withRouter, Link} from 'react-router-dom'
+import './index.css'
+
+const dishes = [
+    // ⭐ Main Course
+    {
+        dishId: 1,
+        categoryId: 1,
+        categoryName: "Main Course",
+        name: "Paneer Butter Masala",
+        description: "A rich and creamy curry made with paneer cubes cooked in tomato and butter gravy.",
+        image: "https://res.cloudinary.com/dnvtpszvn/image/upload/v1758053795/download_esl393.jpg",
+        isAdded: false,
+        serves: 2,
+        type: "Veg",
+        ingredients: [
+            { id: "ing1", name: "Paneer", quantity: "200g", serves: 2 },
+            { id: "ing2", name: "Tomato", quantity: "3 medium", serves: 2 },
+            { id: "ing3", name: "Butter", quantity: "2 tbsp", serves: 2 },
+            { id: "ing4", name: "Cream", quantity: "3 tbsp", serves: 2 }
+        ]
+    },
+    {
+        dishId: 2,
+        categoryId: 1,
+        categoryName: "Main Course",
+        name: "Chicken Biryani",
+        description: "A fragrant rice dish made with basmati rice, chicken, and aromatic spices.",
+        image: "https://www.themealdb.com/images/media/meals/xrttsx1487339558.jpg",
+        isAdded: false,
+        type: "Non-Veg",
+        serves: 4,
+        ingredients: [
+            { id: "ing5", name: "Chicken", quantity: "500g", serves: 4 },
+            { id: "ing6", name: "Basmati Rice", quantity: "2 cups", serves: 4 },
+            { id: "ing7", name: "Onion", quantity: "2 large", serves: 4 },
+            { id: "ing8", name: "Biryani Masala", quantity: "2 tbsp", serves: 4 }
+        ]
+    },
+    {
+        dishId: 3,
+        categoryId: 1,
+        categoryName: "Main Course",
+        name: "Dal Tadka",
+        description: "Yellow lentils cooked with Indian spices and finished with a ghee tadka.",
+        image: "https://www.themealdb.com/images/media/meals/xvrrux1511783685.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Veg",
+        ingredients: [
+            { id: "ing9", name: "Toor Dal", quantity: "1 cup", serves: 3 },
+            { id: "ing10", name: "Onion", quantity: "1 medium", serves: 3 },
+            { id: "ing11", name: "Tomato", quantity: "1 medium", serves: 3 },
+            { id: "ing12", name: "Ghee", quantity: "2 tbsp", serves: 3 }
+        ]
+    },
+    {
+        dishId: 13,
+        categoryId: 1,
+        categoryName: "Main Course",
+        name: "Butter Chicken",
+        description: "Tender chicken cooked in a creamy tomato-based gravy with butter and spices.",
+        image: "https://www.themealdb.com/images/media/meals/uryqru1511798039.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Non-Veg",
+        ingredients: [
+            { id: "ing13", name: "Chicken", quantity: "400g", serves: 3 },
+            { id: "ing14", name: "Tomato Puree", quantity: "1 cup", serves: 3 },
+            { id: "ing15", name: "Butter", quantity: "3 tbsp", serves: 3 },
+            { id: "ing16", name: "Cream", quantity: "4 tbsp", serves: 3 }
+        ]
+    },
+    {
+        dishId: 14,
+        categoryId: 1,
+        categoryName: "Main Course",
+        name: "Fish Curry",
+        description: "Spicy and tangy curry made with fresh fish and tamarind base.",
+        image: "https://www.themealdb.com/images/media/meals/1520084413.jpg",
+        isAdded: false,
+        type: "Non-Veg",
+        serves: 3,
+        ingredients: [
+            { id: "ing17", name: "Fish", quantity: "500g", serves: 3 },
+            { id: "ing18", name: "Tamarind Pulp", quantity: "2 tbsp", serves: 3 },
+            { id: "ing19", name: "Onion", quantity: "2 medium", serves: 3 },
+            { id: "ing20", name: "Spices", quantity: "2 tbsp", serves: 3 }
+        ]
+    },
+
+    // ⭐ Sides
+    {
+        dishId: 4,
+        categoryId: 2,
+        categoryName: "Sides",
+        name: "Garlic Naan",
+        description: "Soft and fluffy Indian bread topped with garlic and butter, served hot.",
+        image: "https://res.cloudinary.com/dnvtpszvn/image/upload/v1758053905/download_1_yqctfs.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing21", name: "All-purpose Flour", quantity: "2 cups", serves: 4 },
+            { id: "ing22", name: "Garlic", quantity: "4 cloves", serves: 4 },
+            { id: "ing23", name: "Butter", quantity: "2 tbsp", serves: 4 },
+            { id: "ing24", name: "Yeast", quantity: "1 tsp", serves: 4 }
+        ]
+    },
+    {
+        dishId: 5,
+        categoryId: 2,
+        categoryName: "Sides",
+        name: "French Fries",
+        description: "Crispy golden potato fries sprinkled with salt and served with ketchup.",
+        image: "https://res.cloudinary.com/dnvtpszvn/image/upload/v1758053905/download_2_wkjrnh.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Veg",
+        ingredients: [
+            { id: "ing25", name: "Potatoes", quantity: "3 large", serves: 3 },
+            { id: "ing26", name: "Oil", quantity: "500ml", serves: 3 },
+            { id: "ing27", name: "Salt", quantity: "to taste", serves: 3 }
+        ]
+    },
+    {
+        dishId: 6,
+        categoryId: 2,
+        categoryName: "Sides",
+        name: "Coleslaw",
+        description: "A refreshing salad made with shredded cabbage, carrots, and creamy dressing.",
+        image: "https://www.themealdb.com/images/media/meals/1548772327.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing28", name: "Cabbage", quantity: "1 small", serves: 4 },
+            { id: "ing29", name: "Carrot", quantity: "2 medium", serves: 4 },
+            { id: "ing30", name: "Mayonnaise", quantity: "3 tbsp", serves: 4 }
+        ]
+    },
+    {
+        dishId: 15,
+        categoryId: 2,
+        categoryName: "Sides",
+        name: "Chicken Wings",
+        description: "Crispy fried chicken wings tossed in spicy sauce.",
+        image: "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Non-Veg",
+        ingredients: [
+            { id: "ing31", name: "Chicken Wings", quantity: "500g", serves: 3 },
+            { id: "ing32", name: "Flour", quantity: "1 cup", serves: 3 },
+            { id: "ing33", name: "Spicy Sauce", quantity: "3 tbsp", serves: 3 }
+        ]
+    },
+
+    // ⭐ Desserts
+    {
+        dishId: 7,
+        categoryId: 3,
+        categoryName: "Desserts",
+        name: "Gulab Jamun",
+        description: "Soft fried dough balls soaked in sugar syrup flavored with cardamom.",
+        image: "https://www.themealdb.com/images/media/meals/8x09hy1560460923.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing34", name: "Khoya", quantity: "1 cup", serves: 4 },
+            { id: "ing35", name: "Sugar", quantity: "1 cup", serves: 4 },
+            { id: "ing36", name: "Cardamom", quantity: "1 tsp", serves: 4 }
+        ]
+    },
+    {
+        dishId: 8,
+        categoryId: 3,
+        categoryName: "Desserts",
+        name: "Cheesecake",
+        description: "Creamy cheesecake on a biscuit base topped with fruit glaze.",
+        image: "https://res.cloudinary.com/dnvtpszvn/image/upload/v1758053905/download_3_g2fjtq.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing37", name: "Cream Cheese", quantity: "250g", serves: 4 },
+            { id: "ing38", name: "Sugar", quantity: "1/2 cup", serves: 4 },
+            { id: "ing39", name: "Biscuit Base", quantity: "1 cup", serves: 4 }
+        ]
+    },
+    {
+        dishId: 9,
+        categoryId: 3,
+        categoryName: "Desserts",
+        name: "Chocolate Brownie",
+        description: "Rich and fudgy chocolate brownie topped with nuts.",
+        image: "https://res.cloudinary.com/dnvtpszvn/image/upload/v1758053904/download_4_m322x0.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing40", name: "Dark Chocolate", quantity: "200g", serves: 4 },
+            { id: "ing41", name: "Flour", quantity: "1 cup", serves: 4 },
+            { id: "ing42", name: "Sugar", quantity: "1 cup", serves: 4 },
+            { id: "ing43", name: "Eggs", quantity: "2", serves: 4 }
+        ]
+    },
+
+    // ⭐ Starters
+    {
+        dishId: 10,
+        categoryId: 4,
+        categoryName: "Starters",
+        name: "Spring Rolls",
+        description: "Crispy rolls filled with vegetables, served with sweet chili sauce.",
+        image: "https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing44", name: "Spring Roll Sheets", quantity: "10", serves: 4 },
+            { id: "ing45", name: "Cabbage", quantity: "1 cup", serves: 4 },
+            { id: "ing46", name: "Carrot", quantity: "1 cup", serves: 4 }
+        ]
+    },
+    {
+        dishId: 11,
+        categoryId: 4,
+        categoryName: "Starters",
+        name: "Chicken Tikka",
+        description: "Marinated chicken pieces grilled to perfection in tandoor.",
+        image: "https://www.themealdb.com/images/media/meals/yyrrxr1511816289.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Non-Veg",
+        ingredients: [
+            { id: "ing47", name: "Chicken", quantity: "500g", serves: 3 },
+            { id: "ing48", name: "Yogurt", quantity: "1/2 cup", serves: 3 },
+            { id: "ing49", name: "Tikka Masala", quantity: "2 tbsp", serves: 3 }
+        ]
+    },
+    {
+        dishId: 12,
+        categoryId: 4,
+        categoryName: "Starters",
+        name: "Hummus with Pita",
+        description: "A Middle Eastern dip made from chickpeas, tahini, lemon, and garlic served with pita bread.",
+        image: "https://www.themealdb.com/images/media/meals/svprys1511176755.jpg",
+        isAdded: false,
+        serves: 4,
+        type: "Veg",
+        ingredients: [
+            { id: "ing50", name: "Chickpeas", quantity: "1 cup", serves: 4 },
+            { id: "ing51", name: "Tahini", quantity: "2 tbsp", serves: 4 },
+            { id: "ing52", name: "Garlic", quantity: "2 cloves", serves: 4 },
+            { id: "ing53", name: "Pita Bread", quantity: "4 pieces", serves: 4 }
+        ]
+    },
+    {
+        dishId: 16,
+        categoryId: 4,
+        categoryName: "Starters",
+        name: "Prawn Tempura",
+        description: "Crispy deep-fried prawns served with soy dipping sauce.",
+        image: "https://www.themealdb.com/images/media/meals/58oia61564916529.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Non-Veg",
+        ingredients: [
+            { id: "ing54", name: "Prawns", quantity: "300g", serves: 3 },
+            { id: "ing55", name: "Tempura Batter", quantity: "1 cup", serves: 3 },
+            { id: "ing56", name: "Soy Sauce", quantity: "2 tbsp", serves: 3 }
+        ]
+    },
+    {
+        dishId: 17,
+        categoryId: 4,
+        categoryName: "Starters",
+        name: "Mutton Kebab",
+        description: "Spicy minced mutton skewers grilled to smoky perfection.",
+        image: "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg",
+        isAdded: false,
+        serves: 3,
+        type: "Non-Veg",
+        ingredients: [
+            { id: "ing57", name: "Mutton Mince", quantity: "400g", serves: 3 },
+            { id: "ing58", name: "Onion", quantity: "1 medium", serves: 3 },
+            { id: "ing59", name: "Spices", quantity: "2 tbsp", serves: 3 }
+        ]
+    }
+];
+
+class Ingredients extends Component {
+    state = { dishIngredients: {} }
+
+    componentDidMount() {
+        this.getDishIngredients()
+    }
+
+    getDishIngredients = () => {
+        const { match } = this.props
+        const { params } = match
+        const { dishId } = params
+
+        // dishId from params is a string, convert to number for comparison
+        const gettingDishList = dishes.find(each => each.dishId === Number(dishId))
+
+        this.setState({ dishIngredients: gettingDishList })
+    }
+
+    render() {
+        const { dishIngredients } = this.state
+
+        return (
+            <>
+            <div className='head-container'>
+                <Link to="/">
+                    <button type='button' className='back-list-btn'>
+                        <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1758104600/Group_638_baxwvn.png" alt="back-btn" />
+                    </button>
+                </Link>
+
+                <h1 className='ing-head'>Ingredients List</h1>
+            </div>
+            <div className='ingredients-list-container'>
+                <div className='ing-list'>
+                    <div className='ing-info'>
+                        <h1 className='dish-list-heading'>
+                            {dishIngredients.name}
+                        </h1>
+                        <p className='dish-list-paragraph'>
+                            {dishIngredients.description}
+                        </p>
+                    </div>
+                    <p className='ing'>Ingredients</p>
+                    <p className='ing-p'>For {dishIngredients.serves} people</p>
+                </div>
+                <img className='ingredient-lists-image' src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1758082269/Ing_1_bcw5ld.png" alt="ingredient-imagE" />
+            </div>
+
+            <ul className='ingredients-list'>
+                        {dishIngredients.ingredients && dishIngredients.ingredients.map(ingredient => (
+                            <li key={ingredient.id} className='ingredient-item'>
+                                <span className='ingredient-name'>{ingredient.name}</span>
+                                <span className='ingredient-quantity'>{ingredient.quantity}</span> 
+                            </li>
+                        ))}
+            </ul>
+        </>
+        )
+    }
+}
+
+
+export default withRouter(Ingredients)
