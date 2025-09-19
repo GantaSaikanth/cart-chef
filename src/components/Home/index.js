@@ -349,10 +349,42 @@ class Menu extends Component {
   }
 
   onClickAddBtn = (dishId) => {
-    this.setState(prevState => ({
-      dishes: prevState.dishes.map(each => each.dishId === dishId ? { ...each, isAdded: !each.isAdded } : each)
-    }))
-  }
+  this.setState((prevState) => {
+    // Toggle isAdded
+    const updatedDishes = prevState.dishes.map((each) =>
+      each.dishId === dishId ? { ...each, isAdded: !each.isAdded } : each
+    );
+
+    // Recalculate counts
+    const starterCount = updatedDishes.filter(
+      (d) => d.categoryId === 1 && d.isAdded
+    ).length;
+    const mainCourseCount = updatedDishes.filter(
+      (d) => d.categoryId === 2 && d.isAdded
+    ).length;
+    const dessertCount = updatedDishes.filter(
+      (d) => d.categoryId === 3 && d.isAdded
+    ).length;
+    const sidesCount = updatedDishes.filter(
+      (d) => d.categoryId === 4 && d.isAdded
+    ).length;
+
+    return {
+      dishes: updatedDishes,
+      starterCount,
+      mainCourseCount,
+      dessertCount,
+      sidesCount,
+    };
+  }, this.getSwitchCount);
+};
+
+
+  // onClickAddBtn = (dishId) => {
+  //   this.setState(prevState => ({
+  //     dishes: prevState.dishes.map(each => each.dishId === dishId ? { ...each, isAdded: !each.isAdded } : each)
+  //   }))
+  // }
 
   onClickDishList = (dish) => {
     console.log(dish)
@@ -372,6 +404,7 @@ class Menu extends Component {
     const vegDishesFilter = vegDisplay === 2 ? tabDishesFilter.filter(each => each.type === "Veg") : tabDishesFilter
     const nonVegDishesFilter = nonVegDisplay === 2 ? tabDishesFilter.filter(each => each.type === "Non-Veg") : tabDishesFilter
     const dishesfiltering = vegDisplay === 2 ? vegDishesFilter : nonVegDishesFilter
+    // const selectedDish = dishes.find(each => each.dishId === setViewDish.dishId)
 
 
     return (
@@ -404,7 +437,8 @@ class Menu extends Component {
         </div>
 
         <div className="dishes-container">
-          {dishesfiltering.map(each => {
+        {dishesfiltering.length >= 1 ? <>
+        {dishesfiltering.map(each => {
             const isAddedOrNot = each.isAdded === false ? "Add +" : "Remove"
             const addClassName = each.isAdded === false ? 'add-to-cart' : 'remove-from-cart'
 
@@ -433,6 +467,9 @@ class Menu extends Component {
             )
 
           })}
+        </> : <div className="no-dish-container">
+          <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1758311853/images_yhmssi.jpg" className="no-dish-image" alt="no-dish-img" />
+        <h1>Sorry, There's no dish available.</h1></div>}
         </div>
         {showDetailView === false && (
           <div className="footer-container">
