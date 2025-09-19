@@ -7,7 +7,7 @@
 }
 .search-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 95%;    
     border: 1px solid #ADADAD;
@@ -209,7 +209,7 @@ opacity: 1;
 .dishes-container {
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 120vh;
     margin-bottom: 50px;
 }
 .dish-images {
@@ -389,4 +389,11 @@ letter-spacing: 0%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.no-dish-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
 }
