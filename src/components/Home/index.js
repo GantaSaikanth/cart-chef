@@ -349,35 +349,35 @@ class Menu extends Component {
   }
 
   onClickAddBtn = (dishId) => {
-  this.setState((prevState) => {
-    // Toggle isAdded
-    const updatedDishes = prevState.dishes.map((each) =>
-      each.dishId === dishId ? { ...each, isAdded: !each.isAdded } : each
-    );
+    this.setState((prevState) => {
+      // Toggle isAdded
+      const updatedDishes = prevState.dishes.map((each) =>
+        each.dishId === dishId ? { ...each, isAdded: !each.isAdded } : each
+      );
 
-    // Recalculate counts
-    const starterCount = updatedDishes.filter(
-      (d) => d.categoryId === 1 && d.isAdded
-    ).length;
-    const mainCourseCount = updatedDishes.filter(
-      (d) => d.categoryId === 2 && d.isAdded
-    ).length;
-    const dessertCount = updatedDishes.filter(
-      (d) => d.categoryId === 3 && d.isAdded
-    ).length;
-    const sidesCount = updatedDishes.filter(
-      (d) => d.categoryId === 4 && d.isAdded
-    ).length;
+      // Recalculate counts
+      const starterCount = updatedDishes.filter(
+        (d) => d.categoryId === 1 && d.isAdded
+      ).length;
+      const mainCourseCount = updatedDishes.filter(
+        (d) => d.categoryId === 2 && d.isAdded
+      ).length;
+      const dessertCount = updatedDishes.filter(
+        (d) => d.categoryId === 3 && d.isAdded
+      ).length;
+      const sidesCount = updatedDishes.filter(
+        (d) => d.categoryId === 4 && d.isAdded
+      ).length;
 
-    return {
-      dishes: updatedDishes,
-      starterCount,
-      mainCourseCount,
-      dessertCount,
-      sidesCount,
-    };
-  }, this.getSwitchCount);
-};
+      return {
+        dishes: updatedDishes,
+        starterCount,
+        mainCourseCount,
+        dessertCount,
+        sidesCount,
+      };
+    }, this.getSwitchCount);
+  };
 
 
   // onClickAddBtn = (dishId) => {
@@ -437,39 +437,39 @@ class Menu extends Component {
         </div>
 
         <div className="dishes-container">
-        {dishesfiltering.length >= 1 ? <>
-        {dishesfiltering.map(each => {
-            const isAddedOrNot = each.isAdded === false ? "Add +" : "Remove"
-            const addClassName = each.isAdded === false ? 'add-to-cart' : 'remove-from-cart'
+          {dishesfiltering.length >= 1 ? <>
+            {dishesfiltering.map(each => {
+              const isAddedOrNot = each.isAdded === false ? "Add +" : "Remove"
+              const addClassName = each.isAdded === false ? 'add-to-cart' : 'remove-from-cart'
 
-            return (
-              <li key={each.dishId} className="list-item">
-                <div className="dish-info">
-                  <div onClick={() => this.onClickDishList(each)}>
-                    <div className="dish-header-container">
-                      <h1 className="dish-heading">{each.name}</h1>
-                      <img className="dish-images" src={each.type === "Veg" ? "https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_dkssaf.png" : "https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_1_g3idan.png"} alt="veg-or-non-veg-img" />
+              return (
+                <li key={each.dishId} className="list-item">
+                  <div className="dish-info">
+                    <div onClick={() => this.onClickDishList(each)}>
+                      <div className="dish-header-container">
+                        <h1 className="dish-heading">{each.name}</h1>
+                        <img className="dish-images" src={each.type === "Veg" ? "https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_dkssaf.png" : "https://res.cloudinary.com/dnvtpszvn/image/upload/v1757761816/Frame_19479_1_g3idan.png"} alt="veg-or-non-veg-img" />
+                      </div>
+                      <p className="dish-para">{each.description}</p>
                     </div>
-                    <p className="dish-para">{each.description}</p>
+                    <Link to={`/ingredients/${each.dishId}`} className="links">
+                      <button type='button' className="ingredient-container">
+                        <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1757972701/fi_15315413_dtsquu.png" alt="ingredient" />
+                        <span className="ingredient-para">Ingredient</span>
+                      </button>
+                    </Link>
                   </div>
-                  <Link to={`/ingredients/${each.dishId}`} className="links">
-                    <button type='button' className="ingredient-container">
-                      <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1757972701/fi_15315413_dtsquu.png" alt="ingredient" />
-                      <span className="ingredient-para">Ingredient</span>
-                    </button>
-                  </Link>
-                </div>
-                <div className="image-container">
-                  <img className="main-image" src={each.image} alt={each.id} />
-                  <button onClick={() => this.onClickAddBtn(each.dishId)} className={`add-btn ${addClassName}`} type="button">{isAddedOrNot}</button>
-                </div>
-              </li>
-            )
+                  <div className="image-container">
+                    <img className="main-image" src={each.image} alt={each.id} />
+                    <button onClick={() => this.onClickAddBtn(each.dishId)} className={`add-btn ${addClassName}`} type="button">{isAddedOrNot}</button>
+                  </div>
+                </li>
+              )
 
-          })}
-        </> : <div className="no-dish-container">
-          <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1758311853/images_yhmssi.jpg" className="no-dish-image" alt="no-dish-img" />
-        <h1>Sorry, There's no dish available.</h1></div>}
+            })}
+          </> : <div className="no-dish-container">
+            <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1758311853/images_yhmssi.jpg" className="no-dish-image" alt="no-dish-img" />
+            <h1>Sorry, There's no dish available.</h1></div>}
         </div>
         {showDetailView === false && (
           <div className="footer-container">
@@ -498,10 +498,10 @@ class Menu extends Component {
                 </p>
 
                 <Link to={`/ingredients/${setViewDish.dishId}`} className="links">
-                    <button type='button' className="ingredient-container">
-                      <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1757972701/fi_15315413_dtsquu.png" alt="ingredient" />
-                      <span className="ingredient-para">Ingredient</span>
-                    </button>
+                  <button type='button' className="ingredient-container">
+                    <img src="https://res.cloudinary.com/dnvtpszvn/image/upload/v1757972701/fi_15315413_dtsquu.png" alt="ingredient" />
+                    <span className="ingredient-para">Ingredient</span>
+                  </button>
                 </Link>
               </div>
             </div>
